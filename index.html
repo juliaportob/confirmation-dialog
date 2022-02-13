@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width">
+  <title>Confirmation Dialog</title>
+</head>
+<body>
+  <div class="main">
+    <button onclick=CreateDialog() class="modal-button">Click Me</button>
+  </div>
+  <div class="response">
+    <h3 class="response-content"></h3>
+  </div>
+
+  <script>
+    async function CreateDialog() {
+      this.dialogConfirmation = new ConfirmationDialog("Are you sure you want to continue?", "Yes", "Cancel");
+
+      try {
+        const modalResponse = await dialogConfirmation.question();
+        const responseContent = document.querySelector('.response-content');
+        responseContent.textContent = `You just clicked ${modalResponse}`;
+      } catch(err) {
+        console.log(err);
+      }
+      
+    }
+  </script>
+</html>
